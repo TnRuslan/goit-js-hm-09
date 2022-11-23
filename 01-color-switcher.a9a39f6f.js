@@ -1,0 +1,2 @@
+let t=null,o=!0;const e=document.querySelector("button[data-start]"),n=document.querySelector("button[data-stop]");function c(){document.body.style.backgroundColor=`#${Math.floor(16777215*Math.random()).toString(16)}`,console.log("chage color")}e.addEventListener("click",(function(){o&&(t=setInterval(c,1e3),o=!1)})),n.addEventListener("click",(function(){clearInterval(t),o=!0}));
+//# sourceMappingURL=01-color-switcher.a9a39f6f.js.map
