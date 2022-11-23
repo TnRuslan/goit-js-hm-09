@@ -6,16 +6,22 @@ const stop = document.querySelector('button[data-stop]');
 start.addEventListener('click', onStartChangeBodyColor);
 stop.addEventListener('click', onStopChangeBodyColor);
 
+stop.setAttribute('disabled', '');
+
 function onStartChangeBodyColor() {
   if (isButtonStartActive) {
     timeoutId = setInterval(ChangeColor, 1000);
     isButtonStartActive = false;
+    start.setAttribute('disabled', '');
+    stop.removeAttribute('disabled');
   }
 }
 
 function onStopChangeBodyColor() {
   clearInterval(timeoutId);
   isButtonStartActive = true;
+  start.removeAttribute('disabled');
+  stop.setAttribute('disabled', '');
 }
 
 function ChangeColor() {
