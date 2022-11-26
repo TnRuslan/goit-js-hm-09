@@ -1,11 +1,9 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import { convertMs } from './convers-time';
-// console.log(convertMs(1111111111988098876));
 
 const date = new Date();
 
-// console.log(convertMs(date.getTime()));
 const daysEl = document.querySelector('[data-days]');
 const hoursEl = document.querySelector('[data-hours]');
 const minutesEl = document.querySelector('[data-minutes]');
@@ -39,6 +37,7 @@ flatpickr('#datetime-picker', {
         if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
           clearInterval(timerId);
           btnStart.setAttribute('disabled', '');
+          ``;
         }
       }, 1000);
     }
