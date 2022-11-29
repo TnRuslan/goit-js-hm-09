@@ -26,7 +26,6 @@ function onStopChangeBodyColor() {
 
 function ChangeColor() {
   document.body.style.backgroundColor = getRandomHexColor();
-  console.log('chage color');
 }
 
 function getRandomHexColor() {
