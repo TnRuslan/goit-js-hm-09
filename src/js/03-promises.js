@@ -7,14 +7,34 @@ form.addEventListener('submit', onFormSubmit);
 function onFormSubmit(event) {
   event.preventDefault();
   createFormValue(event);
-  createPromise(1, formValue.delay)
-    .then(({ position, delay }) => {
-      console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-    })
-    .catch(({ position, delay }) => {
-      console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-    });
-  console.log(createPromise(1, formValue.step));
+  console.log(formValue.delay);
+  console.log(formValue.step);
+  console.log(formValue.amount);
+
+  createMessageFromPromise(formValue.step, formValue.amount, formValue.delay);
+
+  // createPromise(1, formValue.delay)
+  //   .then(({ position, delay }) => {
+  //     console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+  //   })
+  //   .catch(({ position, delay }) => {
+  //     console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+  //   });
+  // console.log(createPromise(1, formValue.step));
+}
+
+function createMessageFromPromise(step, amount, delay) {
+  let position = 0;
+  const intervalId = setInterval(() => {
+    // createPromise(position, delay);
+    if (position === Number(amount)) {
+      clearInterval(intervalId);
+      return;
+    }
+    position += 1;
+    console.log(position);
+    console.log(Number(amount));
+  }, step);
 }
 
 function createFormValue(event) {
