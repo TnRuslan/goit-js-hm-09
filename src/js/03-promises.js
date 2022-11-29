@@ -7,63 +7,49 @@ form.addEventListener('submit', onFormSubmit);
 function onFormSubmit(event) {
   event.preventDefault();
   createFormValue(event);
-  console.log(formValue.delay);
-  console.log(formValue.step);
-  console.log(formValue.amount);
 
   createMessageFromPromise(formValue.step, formValue.amount, formValue.delay);
-
-  // createPromise(1, formValue.delay)
-  //   .then(({ position, delay }) => {
-  //     console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-  //   })
-  //   .catch(({ position, delay }) => {
-  //     console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-  //   });
-  // console.log(createPromise(1, formValue.step));
 }
 
 function createMessageFromPromise(step, amount, delay) {
   let position = 0;
-  const intervalId = setInterval(() => {
-    // createPromise(position, delay);
-    if (position === Number(amount)) {
-      clearInterval(intervalId);
-      return;
-    }
-    position += 1;
-    console.log(position);
-    console.log(Number(amount));
-  }, step);
+
+  setTimeout(() => {
+    const intervalId = setInterval(() => {
+      if (position === Number(amount)) {
+        clearInterval(intervalId);
+        return;
+      }
+
+      createPromise(position, delay)
+        .then(({ position, delay }) => {
+          console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        })
+        .catch(({ position, delay }) => {
+          console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+        });
+
+      position += 1;
+    }, step);
+  }, delay);
 }
 
 function createFormValue(event) {
   const formData = new FormData(event.currentTarget);
 
   formData.forEach((value, name) => {
-    formValue[name] = value;
+    formValue[name] = Number(value);
   });
-  console.log(formValue);
 }
 
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
     const shouldResolve = Math.random() > 0.3;
 
-    setInterval(() => {
-      if (shouldResolve) {
-        resolve({ position, delay });
-      }
+    if (shouldResolve) {
+      resolve({ position, delay });
+    }
 
-      reject({ position, delay });
-    }, delay);
+    reject({ position, delay });
   });
 }
-
-// createPromise(2, 1500)
-//   .then(({ position, delay }) => {
-//     console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-//   })
-//   .catch(({ position, delay }) => {
-//     console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-//   });
