@@ -1,0 +1,2 @@
+const e=document.querySelector(".form"),o={};e.addEventListener("submit",(function(e){e.preventDefault(),function(e){new FormData(e.currentTarget).forEach(((e,n)=>{o[n]=e})),console.log(o)}(e),console.log(o.delay),console.log(o.step),console.log(o.amount),function(e,o,n){let t=0;const l=setInterval((()=>{t!==Number(o)?(t+=1,console.log(t),console.log(Number(o))):clearInterval(l)}),e)}(o.step,o.amount,o.delay)}));
+//# sourceMappingURL=03-promises.aa46106e.js.map

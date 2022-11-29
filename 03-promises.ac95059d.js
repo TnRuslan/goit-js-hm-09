@@ -1,0 +1,2 @@
+!function(){var o=document.querySelector(".form"),e={};o.addEventListener("submit",(function(o){o.preventDefault(),function(o){new FormData(o.currentTarget).forEach((function(o,n){e[n]=o})),console.log(e)}(o),console.log(e.delay),console.log(e.step),console.log(e.amount),n=e.step,t=e.amount,e.delay,l=0,r=setInterval((function(){l!==Number(t)?(l+=1,console.log(l),console.log(Number(t))):clearInterval(r)}),n);var n,t,l,r}))}();
+//# sourceMappingURL=03-promises.ac95059d.js.map
